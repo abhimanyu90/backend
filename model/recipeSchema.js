@@ -1,14 +1,16 @@
-const mongoose = require("mongoose");
-// import { Buffer } from 'buffer';
+
+
+
+const mongoose = require('mongoose');
 
 const recipeSchema = new mongoose.Schema({
-    image: {
-        data: Buffer, // Store image data as binary
-        contentType: String, // Specify the content type (e.g., image/jpeg, image/png)
-    },
-    description: String, // Description of the recipe
+    image: String,
+    description: String,
+    recipeName: String,
+    ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'rateCommentSchema' }], // Update ref to match the model name
 }, {
-    collection: "items" // Set the collection name to "items"
+    collection: "items",
 });
-// window.Buffer = Buffer;
+
 module.exports = mongoose.model("recipeSchema", recipeSchema);
+
